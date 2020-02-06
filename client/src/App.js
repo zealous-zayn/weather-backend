@@ -27,6 +27,7 @@ function App() {
     console.log(item);
     setName(item[0].name)
   }
+  
     
   return (
     <div className={classes.root}>

@@ -41,24 +41,35 @@ export default function Listbox(props) {
       { name: "Las Vegas", selected: false }
     ]
   
-    useState()
+   const [state, setState] =  useState(cities)
 
   const classes = useStyles()
 
+function set (index) {
+  cities.forEach((i,ind)=>{
+    if(ind === index){
+      i.selected = true
+    } else {
+      i.selected = false
+    }
+  })
+  setState(cities)
+}
+
 function getWeather(){
-      
-      let a = cities.filter(item => item.selected===true);
+      let a = state.filter(item => item.selected===true);
+      console.log(a)
         props.onclick(a)
 }
+console.log(state)
     return (
       <List>
-        {cities.map((item, index) => {
+        {state.map((item, index) => {
           return (
             <div key={index}>
-            <ListItem button
-              onClick={() => { item.selected = true;}}
-              className={item.selected ? classes.selected : classes.root}
-              key={index}
+            <ListItem button  
+              onClick={() => { set(index); }}
+              className={state[index].selected ? classes.root : classes.selected}
             >
               {item.name}
             </ListItem>
