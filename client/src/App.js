@@ -21,18 +21,23 @@ const useStyles = makeStyles(theme => ({
 function App() {
 
   const [name,setName] = useState('not Selected')
+  const [state,setState] = useState(false)
   const classes = useStyles();
 
   function onclick(item){
     console.log(item);
     setName(item[0].name)
   }
+
+  function onset(item){
+    setState(item[0].selected)
+  }
   
     
   return (
     <div className={classes.root}>
       <Grid container style={{height:"100vh"}} spacing={0}>
-      <Grid item xs={3}><Listbox className={classes.paper} onclick={(item)=>onclick(item)} /></Grid>
+      <Grid item xs={3}><Listbox className={classes.paper} onset={(item)=>onset(item)} onclick={(item)=>onclick(item)} /></Grid>
       <Grid item xs={9}><Result className={classes.paper} name={name} /></Grid>
       </Grid>
     </div>

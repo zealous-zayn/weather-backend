@@ -53,12 +53,13 @@ function set (index) {
       i.selected = false
     }
   })
+  let a = state.filter(item => item.selected===true);
+        props.onset(a)
   setState(cities)
 }
 
 function getWeather(){
       let a = state.filter(item => item.selected===true);
-      console.log(a)
         props.onclick(a)
 }
 console.log(state)
