@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+import { useSelector, useDispatch } from 'react-redux'
 
 
 
@@ -19,6 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     height: 48,
     padding: '0 30px',
+    marginBottom: '10px'
   },
   selected : {
     width: '100%',
@@ -31,22 +33,19 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     height: 48,
     padding: '0 30px',
+    marginBottom: '10px'
   }
 }));
 
 export default function Listbox(props) {
-  const cities = [
-      { name: "Washington DC", selected: false },
-      { name: "California", selected: false },
-      { name: "Las Vegas", selected: false }
-    ]
   
-   const [state, setState] =  useState(cities)
+    const state = useSelector(state => state.city)
+    const dispatch = useDispatch()
 
   const classes = useStyles()
 
 function set (index) {
-  cities.forEach((i,ind)=>{
+  state.forEach((i,ind)=>{
     if(ind === index){
       i.selected = true
     } else {
@@ -55,14 +54,13 @@ function set (index) {
   })
   let a = state.filter(item => item.selected===true);
         props.onset(a)
-  setState(cities)
+        dispatch({type: 'SELECTED', city: state})
 }
 
 function getWeather(){
       let a = state.filter(item => item.selected===true);
         props.onclick(a)
 }
-console.log(state)
     return (
       <List>
         {state.map((item, index) => {
@@ -78,7 +76,7 @@ console.log(state)
             </div>
           );
         })}
-        <Button variant="contained" color="primary" onClick={()=>getWeather()} >Get Weather</Button>
+        <Button style={{marginTop:"50px"}} variant="contained" color="primary" onClick={()=>getWeather()} >Get Weather</Button>
       </List>
       
     );

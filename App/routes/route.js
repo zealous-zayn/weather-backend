@@ -14,7 +14,9 @@ module.exports.setRouter = (app) =>{
 
     app.get('/zip-array', (req,res)=>{
         let promise = []
+        console.log(JSON.parse(req.query.zipCode))
         JSON.parse(req.query.zipCode).forEach(zipcode => {
+            console.log(typeof(zipcode))
             promise.push(service.getWeather(zipcode))
         });
 
