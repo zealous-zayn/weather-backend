@@ -46,9 +46,9 @@ function App() {
   }
   return (
     <div className={classes.root}>
-      <Grid container style={{height:"100vh", padding:"10px"}} spacing={0}>
-      <Grid style={{padding: "5px"}} item xs={3}><Listbox className={classes.paper} onset={(item)=>onset(item)} onclick={(item)=>onclick(item)} /></Grid>
-      <Grid style={{padding: "5px",alignSelf:"center"}} item xs={9}><Result className={classes.paper} data={selectCity} /></Grid>
+      <Grid container style={{height:"100vh", padding:"10px"}} spacing={2}>
+      <Grid style={{padding: "5px"}} item xs={12} sm={3}><Listbox className={classes.paper} onset={(item)=>onset(item)} onclick={(item)=>onclick(item)} /></Grid>
+      <Grid style={{padding: "5px",alignSelf:"center"}} item xs={12} sm={9}><Result className={classes.paper} data={selectCity} /></Grid>
       </Grid>
     </div>
   );
